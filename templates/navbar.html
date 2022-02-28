@@ -1,0 +1,37 @@
+<style>
+    .n_a_v{
+        background-image: url(static/images/photo5.png);
+        background-size: 750px;
+        background-repeat: repeat-x;
+    }
+</style>
+
+
+<div class="n_a_v">
+    <a href="/">
+        <style>
+            h1{
+                color: black;
+                text-align: center;
+                font-size: 40px;
+            }
+        </style>
+        <h1>WEB DEVELOPMENT COURSES</h1>
+    </a>
+    
+    <form method="GET" action="{% url 'home' %}">
+        <input type="text" name="q" placeholder="Search Room...."/>
+    </form>
+    
+    {% if request.user.is_authenticated %}
+    <p style="color: rgb(21, 48, 128); text-align:center; font-size: 30px; ">Hello!!{{request.user}}</p>
+    <a href="{% url 'logout' %}" style="color: black; font-size: 30px;">Logout</a>
+    {% else %}
+    <a style="color: rgb(21, 48, 128); font-size: 30px;" href="{% url 'login' %}">Login</a>
+    {% endif %}
+    <hr>
+    
+</div>
+
+
+

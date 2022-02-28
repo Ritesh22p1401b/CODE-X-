@@ -1,0 +1,34 @@
+<style>
+    .t_o_p{
+        color: darkblue;
+        text-align: center;
+    }
+
+    .top_name{
+        color: red;
+        font-style: oblique;
+        font-size: 20px;
+    }
+    .a_l{
+        color: red;
+        font-style: oblique;
+        font-size: 20px;
+    }
+</style>
+
+<h3 class="t_o_p"> Browse Topics </h3>
+<hr>
+
+<div>
+    <a href="{%  url 'home' %}" class="a_l">All</a>
+    <hr>
+</div>
+
+
+{% for topic in topics %}
+<div>
+    <a href="{% url 'home' %}?q={{topic.name}}" class="top_name">{{topic.name}} </a>
+    <hr>
+</div>
+{% endfor %}
+

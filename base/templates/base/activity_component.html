@@ -1,0 +1,47 @@
+<style>
+    .r_e_n{
+        color: darkblue;
+        text-align: center;
+    }
+
+    .m_e_s{
+        color: black;
+        font-size: 20px;
+    }
+
+    .m_r{
+        color: brown;
+        font-size: 20px;
+    }
+
+    .m_u{
+        color: blue;
+        font-size: 20px;
+
+    }
+
+    .m_{
+        font-size: 25px;
+    }
+</style>
+
+
+<h3 class="r_e_n"> Recent Activity </h3>
+<hr>
+
+{% for message in room_message %}
+<div>
+    <small class="m_e_s"><a class="m_u"  href="{% url 'user-profile' message.user.id %}">@{{ message.user }}</a>,{{ message.created|timesince}} ago replied to </small>
+    <small class="m_r">"{{message.room}}"</small>
+    <p class="m_">{{message}}</p>
+    {% if request.user == message.user %}
+    <a style="color: red;" href="{% url 'delete-message' message.id %}">Delete</a>
+    {% endif %}
+    <hr>
+</div>
+{% endfor %}
+
+
+
+
+
