@@ -1,34 +1,41 @@
 <style>
-    .t_o_p{
-        color: darkblue;
+    .topic-container {
+        background: linear-gradient(90deg, #0080ffde 0%, #0080ffef 43%,#0080FF 100%);
+        border-radius: 0px 3px;
+        padding: 10px;
+       
+    }
+
+    .t_o_p {
+        padding: 10px;
+        color: whitesmoke;
         text-align: center;
     }
 
-    .top_name{
-        color: red;
-        font-style: oblique;
-        font-size: 20px;
+    .topic-name{
+        display: block;
+        color: whitesmoke;
+        border: 3px solid #0033FF;
+        padding: 34px 10px;
+        border-radius: 5px;
+        text-transform: capitalize;
+        margin-top: 5px; 
     }
-    .a_l{
-        color: red;
-        font-style: oblique;
-        font-size: 20px;
-    }
+
 </style>
 
-<h3 class="t_o_p"> Browse Topics </h3>
-<hr>
+<div class="topic-container">
 
-<div>
-    <a href="{%  url 'home' %}" class="a_l">All</a>
-    <hr>
+    <h3 class="t_o_p"> Browse Topics </h3>
+    <div class="topic-name">
+        <div>
+            <a href="{%  url 'home' %}" class="topic-name" >All</a> 
+        </div>
+        {% for topic in topics %}
+        <div>
+            <a href="{% url 'home' %}?q={{topic.name}}" class="topic-name">{{topic.name}}</a>
+        </div>
+        {% endfor %}
+    </div>
+    
 </div>
-
-
-{% for topic in topics %}
-<div>
-    <a href="{% url 'home' %}?q={{topic.name}}" class="top_name">{{topic.name}} </a>
-    <hr>
-</div>
-{% endfor %}
-

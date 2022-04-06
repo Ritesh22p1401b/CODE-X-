@@ -1,47 +1,60 @@
 <style>
-    .r_e_n{
-        color: darkblue;
-        text-align: center;
+
+    .recent-container{
+        background: linear-gradient(90deg, #0080ffb6 0%, #0080ffd3 43%,#0080FF 100%);
+        border-radius: 0px 3px;
+        padding: 10px;
     }
 
-    .m_e_s{
-        color: black;
+    .message-container{
+        display: block;
+        border: 3px solid #0033FF;
+        padding: 25px 19px;
+        border-radius: 5px;
+        width: 250px;
+    }
+
+    .r_e_n {
+        color: whitesmoke;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .m_e_s {
+        color: whitesmoke;
         font-size: 20px;
     }
 
-    .m_r{
+    .m_r {
         color: brown;
         font-size: 20px;
     }
 
-    .m_u{
+    .m_u {
         color: blue;
         font-size: 20px;
 
     }
 
-    .m_{
+    .m_ {
         font-size: 25px;
     }
+    
 </style>
 
 
-<h3 class="r_e_n"> Recent Activity </h3>
-<hr>
-
-{% for message in room_message %}
-<div>
-    <small class="m_e_s"><a class="m_u"  href="{% url 'user-profile' message.user.id %}">@{{ message.user }}</a>,{{ message.created|timesince}} ago replied to </small>
-    <small class="m_r">"{{message.room}}"</small>
-    <p class="m_">{{message}}</p>
-    {% if request.user == message.user %}
-    <a style="color: red;" href="{% url 'delete-message' message.id %}">Delete</a>
-    {% endif %}
-    <hr>
+<div class="recent-container">
+    <h3 class="r_e_n"> Recent Activity </h3>
+    {% for message in room_message %}
+    <div class="message-container"> 
+        <small class="m_e_s"><a class="m_u" href="{% url 'user-profile' message.user.id %}">@{{ message.user }}</a>,{{message.created|timesince}} ago replied to </small>
+        <small class="m_r">"{{message.room}}"</small>
+        <p class="m_">{{message}}</p>
+        {% if request.user == message.user %}
+        <a style="color: red;" href="{% url 'delete-message' message.id %}">Delete</a>
+        {% endif %}
+        
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
-
-
-
-
 

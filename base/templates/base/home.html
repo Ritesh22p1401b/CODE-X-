@@ -6,7 +6,7 @@
     .home-container{
         display: grid;
         grid-template-columns:1fr 3fr 1fr;
-        margin-top: 20px;
+        padding: 0;
     }
 
     .ph_1{
@@ -34,27 +34,24 @@
     .c_e{
         color: darkslateblue;
         font-size: 25px;
+        padding: 5px;
     }
 
-    .nav{
+    /* .nav{
         background-size: cover;
         background-repeat: no-repeat;
-    }
+    } */
 </style>
 
 
 <div class="home-container">
 
-    
     <div>
        {% include 'base/topics_component.html' %}
-       <img class="ph_2"  src="static/images/photo2.jpg"/>
-       <hr>
-       <img style="width: 250px;" src="static/images/django.png"/>
     </div>
 
-    <div>
-        <img class="ph_1"    src="static/images/photo1.jpg"/>
+    <div class="centre">
+        <!-- <img class="ph_1"    src="static/images/photo1.jpg"/> -->
         <h5 class="r_m">Rooms Availables[ {{room_count}} ]</h5>
         <a class="c_e" href = "{% url 'create-room' %}">Create Room</a>
         <hr>  
