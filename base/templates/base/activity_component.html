@@ -23,38 +23,55 @@
     .m_e_s {
         color: whitesmoke;
         font-size: 20px;
+        text-transform: capitalize;
     }
 
-    .m_r {
-        color: brown;
-        font-size: 20px;
+    .message-user{
+        color: whitesmoke;
+        padding: 5px;
+        border-radius: 3px;
+    }
+    .message-user:hover{
+        background: #0033FF;
+        transition: .5s;
     }
 
-    .m_u {
-        color: blue;
-        font-size: 20px;
-
-    }
-
-    .m_ {
+    .user-message{
+        padding: 20px;
         font-size: 25px;
+        text-transform: capitalize;
+        color: #333;
+    }
+
+    .mess-room{
+        font-size: 20px;
+        color:blue;
+        text-transform: capitalize;
+    }
+
+    .del{
+        color: whitesmoke;
+        padding: 5px; 
+    }
+    .del:hover{
+        background:#A52A2A;
+        padding: 5px;
+        border-radius: 3px;
+        transition: .5s;
     }
     
 </style>
-
 
 <div class="recent-container">
     <h3 class="r_e_n"> Recent Activity </h3>
     {% for message in room_message %}
     <div class="message-container"> 
-        <small class="m_e_s"><a class="m_u" href="{% url 'user-profile' message.user.id %}">@{{ message.user }}</a>,{{message.created|timesince}} ago replied to </small>
-        <small class="m_r">"{{message.room}}"</small>
-        <p class="m_">{{message}}</p>
+        <small class="m_e_s"><a class="message-user" href="{% url 'user-profile' message.user.id %}">@{{ message.user }}</a>,{{message.created|timesince}} ago replied to </small>
+        <small class="mess-room">"{{message.room}}"</small>
+        <p class="user-message">{{message}}</p>
         {% if request.user == message.user %}
-        <a style="color: red;" href="{% url 'delete-message' message.id %}">Delete</a>
-        {% endif %}
-        
+        <a class="del" href="{% url 'delete-message' message.id %}">Delete</a>
+        {% endif %}  
     </div>
     {% endfor %}
 </div>
-
