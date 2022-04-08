@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<!-- <img  class="nav" src="static/images/navbar.png"> -->
+
 <style>
     .home-container{
         display: grid;
@@ -9,13 +9,29 @@
         padding: 0;
     }
 
-    .ph_1{
-        width: 750px;
+    .create-room{
+        display: block;
+        text-align: center;
+        padding: 34px 20px;
+        margin-right: 20px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 20px;
+        position: relative;
+        font-size: 25px;
+        background: #0099FF;
+        border: 3px solid blue;
+        border-radius: 4px;
+    }
+    .c-r{
+        color: #fff;
+    }
+    .c-r:hover{
+        background: #0066FF;
+        padding: 10px;
+        border-radius: 3px;
     }
 
-    .ph_2{
-        width: 250px;
-    }
     .ph_3{
         width: 750px;
     }
@@ -37,10 +53,6 @@
         padding: 5px;
     }
 
-    /* .nav{
-        background-size: cover;
-        background-repeat: no-repeat;
-    } */
 </style>
 
 
@@ -50,16 +62,18 @@
        {% include 'base/topics_component.html' %}
     </div>
 
-    <div class="centre">
-        <!-- <img class="ph_1"    src="static/images/photo1.jpg"/> -->
+    <div>
         <h5 class="r_m">Rooms Availables[ {{room_count}} ]</h5>
-        <a class="c_e" href = "{% url 'create-room' %}">Create Room</a>
-        <hr>  
-        {% include 'base/feed_component.html' %}  
-        <img class="ph_3" src="static/images/photo3.jpg"/> <br>
-        <figcaption class="captions">
+        <div class="create-room">
+            <a class="c-r" href = "{% url 'create-room' %}">Create Room</a>
+        </div>
+        <div>
+            {% include 'base/feed_component.html' %} 
+        </div>
+        <!-- <img class="ph_3" src="static/images/photo3.jpg"/> <br> -->
+        <!-- <figcaption class="captions">
             There is no age for Learning....!!!
-        </figcaption>
+        </figcaption> -->
     </div>
 
     <div>
