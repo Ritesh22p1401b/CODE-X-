@@ -4,7 +4,7 @@
         margin-right: 5px;
         margin-bottom: 5px;
         display: block;
-        padding: 34px 20px;
+        padding: 40px 20px;
         position: relative;
         background: #0099FF;
         border: 3px solid blue;
@@ -13,23 +13,78 @@
 
     .room-host{
         float: right;
+        text-transform: capitalize;
+        margin-top: -25px;
+        color: whitesmoke;
+    }
+    .room-host:hover{
+        background: blue;
+        transition: .5s;
+        padding: 5px;
+        border-radius: 3px;
     }
 
+    .delete-feed{
+        float: right;
+        margin-top: 30px;
+        margin-left: -40px;
+        color: whitesmoke;
+    }
+    .delete-feed:hover{
+        background:#A52A2A;
+        padding: 5px;
+        border-radius: 3px;
+        transition: .5s;
+    }
+
+    .feed-room{
+        float: inline-start;
+        margin-left: 200px;
+        color: #fff;
+        font-size: 25px;
+        text-transform: capitalize;
+        padding: 10px;
+        border-radius: 3px;
+    }
+    .feed-room:hover{
+        background: #6B8E23;
+        transition: .5s;
+    }
+
+    .feed-update{
+        float: left;
+        color: darkblue;
+        padding: 5px;
+        font-size: 25px;
+        border-radius: 3px;
+        margin-top: -25px;
+        margin-right: -55px;
+    }
+    .feed-update:hover{
+        background: #fff;
+        transition: .5s;
+
+    }
+
+    .feed-topic-name{
+        float: left;
+        color: darkblue;
+        padding: 5px;
+        font-size: 20px;
+    }
+   
 </style>
+
 <div>
     {% for room in rooms %}
     <div class="feed-component">
         {% if request.user == room.host %}
-        <a style="color: blue;font-size: 20px;" href = "{% url 'update-room' room.id %}">Edit</a>
-        <a style="color: red; font-size: 20px;" href = "{% url 'delete-room' room.id%}">Delete</a>
+        <a class="feed-update" href = "{% url 'update-room' room.id %}">Edit</a>
+        <a class="delete-feed" href = "{% url 'delete-room' room.id%}">Delete</a>
         {% endif %}
-
         <a class="room-host" href="{% url 'user-profile' room.host.id %}">@{{room.host.username}}</a>
-        <h5><a style="color: darkgreen; font-size: 20px;" href= "{% url 'room' room.id %}">>{{room.name}}</a></h5>
-        <small style="font-size: 20px;">{{room.topic.name}} </small>
-       
-
+        <h5><a class="feed-room" href= "{% url 'room' room.id %}">{{room.name}}</a></h5>
+        <small class="feed-topic-name" >{{room.topic.name}} </small>
     </div>
     {% endfor %}
 </div>
-
