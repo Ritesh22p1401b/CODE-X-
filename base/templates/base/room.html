@@ -6,18 +6,35 @@
     .room-container{
         display: grid;
         grid-template-columns: 5fr 1fr;
+        padding: 0;
     }
 
-    .parti_c{
-        background-color: lightseagreen;
+    .participants{
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 5px;
+        display: block;
+        padding: 15px 20px;
+        position: relative;
+        background: #0099FF;
+        border: 3px solid blue;
+        border-radius: 4px;
     }
+
+    .heading{
+        text-align: center;
+        text-transform: capitalize;
+        color: #fff;
+        padding: 10px;
+
+    }
+    
 
 </style>
 
 <div class="room-container">
 
     <div>
-
         <h1 style="color: rgb(21, 48, 126);" >{{room.name}}</h1>
         <p>{{room.description}}</p>
 
@@ -48,9 +65,8 @@
 
     </div>
 
-    <div class="parti_c">
-        <h3 style="text-align: center; font-size: 25px;">Participants</h3>
-        <hr>
+    <div class="participants">
+        <h3 class="heading">Participants</h3>
         {% for user in participants %}
          <div>
             <p>@{{ user.username }}</p>
