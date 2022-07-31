@@ -120,7 +120,6 @@ def createRoom(request):
     return render(request, 'base/room_form.html',context )
 
 
-
 @login_required(login_url= 'login ')
 def updateRoom(request,pk):
     room = Room.objects.get(id=pk)
@@ -154,7 +153,6 @@ def deleteRoom(request , pk):
     return render(request,'base/delete.html',{'obj':room})
 
 
-
 @login_required(login_url = 'login ')
 def deleteMessage(request , pk):
     message = Message.objects.get(id=pk)
@@ -166,6 +164,3 @@ def deleteMessage(request , pk):
         message.delete()
         return redirect('home')
     return render(request,'base/delete.html',{'obj': message })
-
-
-

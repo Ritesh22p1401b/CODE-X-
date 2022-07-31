@@ -1,9 +1,5 @@
-from operator import truediv
 from django.db import models
 from django.contrib.auth.models import User
-
-
-
 
 # Create your models here.
 class Topic(models.Model):
@@ -11,8 +7,6 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 
 class Room(models.Model):
@@ -43,5 +37,3 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
-
-
