@@ -18,8 +18,7 @@ class Room(models.Model):
     class Meta:
         ordering = ['-updated','-created']
 
-    def __str__(self):
-        self.topic
+    
 
 
 class Message(models.Model):

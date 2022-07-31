@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -167,3 +168,10 @@ def deleteMessage(request , pk):
 
 def contact_us(request):
     return render(request,'base/contact_us.html')
+
+
+def courses(request):
+    topics=Topic.objects.all()
+    context={"topics":topics}
+    return render(request,'base/courses.html',context)
+       
