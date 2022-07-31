@@ -164,3 +164,6 @@ def deleteMessage(request , pk):
         message.delete()
         return redirect('home')
     return render(request,'base/delete.html',{'obj': message })
+
+def contact_us(request):
+    return render(request,'base/contact_us.html')
