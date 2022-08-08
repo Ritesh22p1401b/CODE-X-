@@ -16,7 +16,6 @@ def loginpage(request):
     if request.user.is_authenticated:
         return redirect('home')
 
-
     if request.method == 'POST':
         username= request.POST.get('username').lower()
         password= request.POST.get('password')
@@ -36,7 +35,6 @@ def loginpage(request):
 
     context= {'page': page}
     return render(request,'base/login_register.html',context)
-
 
 
 def logoutuser(request):
@@ -104,20 +102,23 @@ def userProfile(request, pk):
     return render(request, 'base/profile.html', context )
 
 
-
 @login_required(login_url = 'login ')
 def createRoom(request):
     form = createxroom()
+    topics=Topic.objects.all()
 
     if request.method == 'POST':
-        form = createxroom(request.POST)
-        if form.is_valid():
-            room = form.save(commit= False)
-            room.host = request.user
-            room.save()
-            return redirect('home')
+        topic_name=request.POST.get('topic')
+        topic,created=Topic.objects.get_or_create(name=topic_name)
+        Room.objects.create(
+            host=request.user,
+            topic=topic,
+            name=request.POST.get('name'),
+            description=request.POST.get('description')
+        )
+        return redirect('home')
 
-    context = {'form':form}
+    context = {'form':form,'topics':topics}
     return render(request, 'base/room_form.html',context )
 
 
@@ -125,18 +126,21 @@ def createRoom(request):
 def updateRoom(request,pk):
     room = Room.objects.get(id=pk)
     form = createxroom(instance = room)
+    topics= Topic.objects.all()
 
     if request.user != room.host:
         return HttpResponse('You are not allowed here!!')
 
-
     if request.method == 'POST':
-        form = createxroom(request.POST, instance=room)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        topic_name=request.POST.get('topic')
+        topic,created=Topic.objects.get_or_create(name=topic_name)
+        room.name=request.POST.get('name')
+        room.topic=topic
+        room.description=request.POST.get('description')
+        room.save()
+        return redirect('home')
 
-    context = {'form':form}
+    context = {'form':form,'topics': topics,'room': room}
     return render(request, 'base/room_form.html',context)
 
 
@@ -165,6 +169,7 @@ def deleteMessage(request , pk):
         message.delete()
         return redirect('home')
     return render(request,'base/delete.html',{'obj': message })
+
 
 def contact_us(request):
     return render(request,'base/contact_us.html')

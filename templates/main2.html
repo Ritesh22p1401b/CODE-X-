@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheets" type="text/css" media="screen" href="{% static 'styles/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>CODE[X]</title>
+    <style>
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style-type: none;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif
+        }
+        
+        body{
+            background: linear-gradient(90deg, #5bbdffda 0%, #44b4ff 43%,#0099FF 100%);
+        }
+        
+        .nav-bar {
+            background: #0066FF;
+            height: 55px;
+            width: 100%;
+        }
+
+        .logo{
+            color: whitesmoke;
+            font-size: 25px;
+            line-height: 50px;
+            padding: 0 10px;
+            font-weight: bold;
+        }
+
+        nav ul{
+            float:left;
+            margin:1px;
+        }
+
+        nav ul li{
+            display: inline-block;
+            line-height:40px;
+            margin: 0 14px;
+        }
+
+        nav ul li a{
+            color: whitesmoke;
+            font-size: 20px;
+            padding: 4px 6px;
+            border-radius: 3px;
+            text-transform:capitalize;
+        }
+
+        a:hover{
+            background: #1b9bff;
+            transition: .5s;
+        }
+
+        .search{
+            float: right;
+            margin-top: 10px;
+            border: none;
+            padding: 8px;
+        }
+
+        button{
+            float: right;
+            margin-right: 45px;
+            padding: 6px;
+            margin-top: 10px;
+            background: orange;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .login{
+            float: right;
+            color: whitesmoke;
+            font-size: 20px;
+            padding: 4px 6px;
+            border-radius: 3px;
+            text-transform:capitalize;
+            margin-top: 10px;
+            margin-right: 40px;
+        }
+        
+        .logout{
+            float: right;
+            color: whitesmoke;
+            font-size: 20px;
+            padding: 4px 6px;
+            border-radius: 3px;
+            text-transform:capitalize;
+            margin-top: 10px;
+            margin-right: 18px;
+            cursor: pointer;
+        }
+
+        .hello{
+            float: right;
+            color: whitesmoke;
+            font-size: 20px;
+            padding: 4px 6px;
+            border-radius: 3px;
+            text-transform:capitalize;
+            margin-top: 10px;
+            margin-right: 18px;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <nav class="nav-bar">
+        
+        <ul>
+            <label class="logo">CODE[X]</label>
+            <li><a  href="/">Home</a></li>
+            <li><a href="{% url 'course' %}">Courses</a></li>
+            <li><a href="{% url 'contact' %}">Contact us</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">feedback</a></li>
+        </ul>
+        {% if request.user.is_authenticated %}
+        <a class="logout" href="{% url 'logout' %}" >Logout</a>
+        <p class="hello">Hi! {{request.user}}</p>
+        {% else %}
+        <a class="login" href="{% url 'login' %}"  >Login</a>
+        {% endif %}
+        <form method="GET" action="{% url 'home' %}">
+            <button class="but">Search</button>
+            <input class="search" type="text" name="q" placeholder="Search Room...."/>
+        </form>
+
+    </nav>
+
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+    {% endif %}
+
+    {% block content %}
+
+
+    {% endblock %}
+
+</body>
+
+</html>
