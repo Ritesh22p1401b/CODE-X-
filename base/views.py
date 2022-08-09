@@ -80,7 +80,7 @@ def room(request,pk):
     participants= room.participants.all()
 
     if request.method == 'POST':
-        message = Message.objects.create(
+        Message.objects.create(
             user=request.user,
             room=room,
             body=request.POST.get('body')
@@ -102,7 +102,7 @@ def userProfile(request, pk):
     return render(request, 'base/profile.html', context )
 
 
-@login_required(login_url = 'login ')
+@login_required(login_url ='login')
 def createRoom(request):
     form = createxroom()
     topics=Topic.objects.all()

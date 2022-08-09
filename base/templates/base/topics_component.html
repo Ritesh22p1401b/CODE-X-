@@ -1,41 +1,106 @@
 <style>
-    .topic-container {
-        background: linear-gradient(90deg, #0080ffde 0%, #0080ffef 43%,#0080FF 100%);
-        border-radius: 0px 3px;
-        padding: 10px;
-       
+    :root {
+        --color-main: #71c6dd;
+        --color-main-light: #e1f6fb;
+        --color-dark: #3f4156;
+        --color-dark-medium: #51546e;
+        --color-dark-light: #696d97;
+        --color-light: #e5e5e5;
+        --color-gray: #8b8b8b;
+        --color-light-gray: #b2bdbd;
+        --color-bg: #2d2d39;
+        --color-success: #5dd693;
+        --color-error: #fc4b0b;
     }
 
-    .t_o_p {
-        padding: 10px;
-        color: whitesmoke;
-        text-align: center;
+    .topics-container{
+        margin-right: 10px;
     }
 
-    .topic-name{
-        display: block;
-        color: whitesmoke;
-        border: 3px solid #0033FF;
-        padding: 34px 10px;
-        border-radius: 5px;
-        text-transform: capitalize;
-        margin-top: 5px; 
+    .topics__header {
+        margin-bottom: 2rem;
+    }
+  
+    .topics__header h2 {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: var(--color-dark-light);
+    }
+  
+    .topics__list {
+        list-style: none;
+    }
+  
+    .topics__list li a {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        font-weight: 500;
+        color: var( --color-light);
+        transition: all 0.3s ease-in-out;
+    }
+  
+    .topics__list li a.active,
+    .topics__list li a:hover {
+        color: var(--color-main);
+        border-radius: 3px;
+        padding: 3px 3px;
+    }
+  
+    .topics__list li a span {
+        padding: 0.5rem 1rem;
+        color: var( --color-light);
+        border-radius: 3px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .btn {
+        background-color: transparent;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+        transition: all ease-in-out 0.3s;
+        border-radius: 3px;
+        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        padding:8px 10px;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+    }
+
+    .btn--link {
+        border-radius: 3px;
+        padding: 3px;
+        color: var(--color-main);
+        box-shadow: none;
     }
 
 </style>
 
-<div class="topic-container">
-
-    <h3 class="t_o_p"> Browse Topics </h3>
-    <div class="topic-name">
-        <div>
-            <a href="{%  url 'home' %}" class="topic-name" >All</a> 
-        </div>
-        {% for topic in topics %}
-        <div>
-            <a href="{% url 'home' %}?q={{topic.name}}" class="topic-name">{{topic.name}}</a>
-        </div>
-        {% endfor %}
+<div class="topics-container">
+    <div class="topics__header">
+        <h3> Browse Topics </h3>
     </div>
-    
+    <ul class="topics__list">
+        <li>
+            <a href="{% url 'home' %}" class="active">All<span>{{topics.count}}</span></a>
+        </li>
+        {% for topic in topics %}
+            <li>
+                <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}<span>{{topic.room_set.all.count}}</span></a>
+            </li>           
+        {% endfor %}
+
+    </ul>
+    <a class="btn btn--link" href="{% url 'course' %}">More
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+            <title>chevron-down</title>
+            <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+        </svg>
+    </a>
 </div>
