@@ -3,26 +3,27 @@
 {% block content %}
 
 <style>
+    
     .login-form-container {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 450px;
-        height: 350PX;
+        width: 490px;
+        height: 390PX;
         transform: translate(-50%, -50%);
         box-sizing: border-box;
         margin: auto;
-        background: #0066FF;
+        background: #51546e;
         border-radius: 5px;
-        box-shadow: 0 8px 16px #5f76d1;
+        box-shadow: 0 8px 16px  black;
     }
 
     .form-control {
         width: 90%;
         height: 40px;
-        background: white;
+        background:#b2bdbd;
         border-radius: 4px;
-        border: 1px solid silver;
+        border: 1px solid #b2bdbd;
         margin: 10px 0 15px 0;
         padding: 0 5px;
         margin-top: 18px;
@@ -33,7 +34,7 @@
         float: left;
         margin-left: 12px;
         margin-top: 22px;
-        color: whitesmoke;
+        color:#e5e5e5;
         font-size: 20px;
     }
 
@@ -44,17 +45,17 @@
         height: 37px;
         border: none;
         outline: none;
-        background: #0066FF;
+        background:#3f4156;
         cursor: pointer;
         text-transform: uppercase;
-        color: whitesmoke;
+        color: #e5e5e5;
         border-radius: 3px;
         font-size: 18px;
         margin-top: 15px;
     }
 
     .btn:hover {
-        background: #1b9bff;
+        background: #2d2d39;
         transition: .5s;
     }
 
@@ -62,16 +63,23 @@
         float: left;
         margin-top: 15px;
         margin-left: 12px;
-        color: whitesmoke;
+        color: #e5e5e5;
         font-size: 20px;
     }
 
     .sign {
         padding: 8px;
-        color: whitesmoke;
+        color:#e5e5e5;
         border-radius: 4px;
         text-transform: uppercase;
+        background-color: #3f4156;
     }
+
+    .sign:hover{
+        background: #2d2d39;
+        transition: .5s;
+    }
+
 
     .form-container {
         padding: 10px;
@@ -81,10 +89,11 @@
         padding-top: 10px !important;
         display: block;
         border-radius: 5px;
-        color: whitesmoke;
+        color: #e5e5e5;
         font-size: 20px;
     }
 
+    
     .int {
         margin-left: 50%;
         transform: translate(-50%);
@@ -92,19 +101,21 @@
         height: 37px;
         border: none;
         outline: none;
-        background: #0066FF;
+        background:#3f4156;
         cursor: pointer;
         text-transform: uppercase;
-        color: whitesmoke;
+        color: #e5e5e5;
         border-radius: 3px;
         font-size: 18px;
         margin-top: 15px;
     }
 
+
     .int:hover {
-        background: #1b9bff;
+        background: #2d2d39;
         transition: .5s;
     }
+
 
     .user-int {
         border: 1px solid #757575;
@@ -112,24 +123,35 @@
         border-radius: 5px;
         padding: 10px;
         width: 90%;
+        background:#b2bdbd;
     }
+
 
     .log {
         float: left;
         margin-top: 5px;
         margin-left: 12px;
-        color: whitesmoke;
+        color: #e5e5e5;
         font-size: 20px;
     }
 
+
     .logbtn {
         padding: 8px;
-        color: whitesmoke;
+        color: #e5e5e5;
         border-radius: 4px;
         text-transform: uppercase;
+        background-color:#3f4156;
+    }
+
+
+    .logbtn:hover{
+        background-color:#2d2d39
     }
 
 </style>
+
+
 
 <div class="login-form-container">
 
@@ -147,7 +169,7 @@
             </div>
             <input class="btn" type="submit" value="Login" />
         </form>
-        <p class="sign-form">Haven't signed up yet? <a class="sign" href="{% url 'register' %}">Sign up</a></p>
+        <p class="sign-form">Haven't signed up yet?&nbsp<a class="sign" href="{% url 'register' %}">Sign up</a></p>
     </div>
     {% else %}
     <div>
@@ -161,7 +183,7 @@
             <input type="password2" name="password2" class="user-int" placeholder="Confirm Password" />
             <input type="submit" value="Register" class="int" />
         </form>
-        <p class="log">Already signed up?<a class="logbtn" href="{% url 'login' %}">Login</a></p>
+        <p class="log">Already signed up?&nbsp<a class="logbtn" href="{% url 'login' %}">Login</a></p>
     </div>
     {% endif %}
 

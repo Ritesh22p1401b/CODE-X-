@@ -3,32 +3,27 @@
 {% block content %}
 
 <style>
+    .activities {
+        border-radius: 5px;
+        overflow: hidden;
+        margin-left: 10px;
+    }
+
+    .activities__header h2 {
+        background-color: var(--color-dark-light);
+        text-transform: uppercase;
+        font-weight: 500;
+        padding: 1rem 1.5rem;
+        color: var(--color-light);
+        letter-spacing: 1px;
+        font-size: 1rem;
+    }
+
     .room-container{
         display: grid;
         grid-template-columns: 5fr 1fr;
         padding: 0;
     }
-
-    .participants{
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-top: 5px;
-        display: block;
-        padding: 15px 20px;
-        position: relative;
-        background: #0099FF;
-        border: 3px solid blue;
-        border-radius: 4px;
-    }
-
-    .heading{
-        text-align: center;
-        text-transform: capitalize;
-        color: #fff;
-        padding: 10px;
-
-    }
-    
 
 </style>
 
@@ -65,8 +60,10 @@
 
     </div>
 
-    <div class="participants">
-        <h3 class="heading">Participants</h3>
+    <div class="activities" >
+        <div class="activities__header" >
+            <h2>Participants</h2>
+        </div>
         {% for user in participants %}
          <div>
             <p>@{{ user.username }}</p>
@@ -77,9 +74,3 @@
 </div>
 
 {% endblock %}
-
-
-
-
-
-
