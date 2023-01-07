@@ -148,10 +148,10 @@
             <li><a href="#">feedback</a></li>
         </ul>
         {% if request.user.is_authenticated %}
-        <a class="logout" href="{% url 'logout' %}" >Logout</a>
+        <a class="logout" href="{% url 'logout' %}">Logout</a>
         <p class="hello">Hi! {{request.user}}</p>
         {% else %}
-        <a class="login" href="{% url 'login' %}"  >Login</a>
+        <a class="login" href="{% url 'login' %}">Login</a>
         {% endif %}
         <form method="GET" action="{% url 'home' %}">
             <button class="but">Search</button>
